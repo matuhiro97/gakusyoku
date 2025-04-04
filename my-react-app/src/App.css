@@ -1,42 +1,137 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 全体のベーススタイル */
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: #fdd131;
+  color: #3d2c1f;
+}
+
+/* ヘッダー部分 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #b16a24;
+  padding: 0.75rem 1rem;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 24px;
+  height: 3px;
+  background-color: #fff;
+}
+
+/* メインコンテナ */
+.container {
+  padding: 1rem;
   text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* セクションタイトル */
+.section-title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #3d2c1f;
+  font-weight: bold;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ボタン群 */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.button-group button {
+  background-color: #5a3e2b;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-.card {
-  padding: 2em;
+.button-group button:hover {
+  background-color: #7f523c;
 }
 
-.read-the-docs {
-  color: #888;
+/* 任意金額入力 */
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group input {
+  width: 140px;
+  padding: 0.4rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 提案を見るボタン */
+.proposal-button {
+  background-color: #5a3e2b;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.proposal-button:hover {
+  background-color: #7f523c;
+}
+
+/* 結果表示 */
+.results-container {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+/* セット表示 */
+.set-box {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff7da;
+}
+
+.combo-box {
+  margin-top: 0.5rem;
+}
+
+.combo-box ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.combo-box li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
