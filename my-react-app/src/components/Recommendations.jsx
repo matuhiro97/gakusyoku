@@ -18,7 +18,7 @@ const Recommendations = ({
     const perMealBudget = Math.floor(finalBudget / mealCount);
     const results = [];
     for (let i = 0; i < mealCount; i++) {
-      const res = await fetch(`http://127.0.0.1:5000/recommend/${perMealBudget}`);
+      const res = await fetch(`https://gakusyokubackend.onrender.com/recommend/${perMealBudget}`);
       const data = await res.json();
       results.push({ mealIndex: i + 1, data });
     }
