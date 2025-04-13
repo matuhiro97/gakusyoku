@@ -14,12 +14,6 @@ const BudgetSelector = ({
     setCustomBudget("");
   };
 
-  // 任意金額入力
-  const handleCustomBudgetChange = (e) => {
-    setCustomBudget(e.target.value);
-    setSelectedBudget("");
-  };
-
   // 食数選択
   const handleMealCount = (value) => {
     setMealCount(value);
@@ -29,27 +23,43 @@ const BudgetSelector = ({
     <div className="budget-selector">
       <div className="section-title">ミールカード金額選択</div>
       <div className="button-group">
-        <button onClick={() => handleBudgetSelect("700")}>700</button>
-        <button onClick={() => handleBudgetSelect("1250")}>1250</button>
-        <button onClick={() => handleBudgetSelect("1650")}>1650</button>
-      </div>
-
-      <div className="section-title">金額入力</div>
-      <div className="input-group">
-        <input
-          type="number"
-          placeholder="任意の金額入力"
-          value={customBudget}
-          onChange={handleCustomBudgetChange}
-          disabled={selectedBudget !== ""}
-        />
+        <button
+          className={selectedBudget === "700" ? "button-selected" : ""}
+          onClick={() => handleBudgetSelect("700")}
+        >
+          700
+        </button>
+        <button
+          className={selectedBudget === "1250" ? "button-selected" : ""}
+          onClick={() => handleBudgetSelect("1250")}
+        >
+          1250
+        </button>
+        <button
+          className={selectedBudget === "1650" ? "button-selected" : ""}
+          onClick={() => handleBudgetSelect("1650")}
+        >
+          1650
+        </button>
       </div>
 
       <div className="section-title">食数選択</div>
       <div className="button-group">
-        <button onClick={() => handleMealCount(1)}>1食</button>
-        <button onClick={() => handleMealCount(2)}>2食</button>
-        <button onClick={() => handleMealCount(3)}>3食</button>
+        {[1, 2, 3].map((count) => (
+          <button
+            key={count}
+            className={mealCount === count ? "button-selected" : ""}
+            onClick={() => handleMealCount(count)}
+          >
+            <img
+              src={`/${count}syoku.png`}
+              alt={`${count}食`}
+              width="40"
+              style={{ display: "block", margin: "0 auto 0.2rem" }}
+            />
+            {count}食
+          </button>
+        ))}
       </div>
     </div>
   );

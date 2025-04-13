@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Recommendations = ({
   selectedBudget,
@@ -7,6 +7,8 @@ const Recommendations = ({
   recommendations,
   setRecommendations,
 }) => {
+  const [loading, setLoading] = useState(false); // ← ローディング状態を管理
+
   // APIからおすすめ提案を取得する処理
   const fetchRecommendations = async () => {
     const budget = customBudget || selectedBudget;
@@ -15,14 +17,21 @@ const Recommendations = ({
       alert("有効な金額を入力または選択してください");
       return;
     }
+
+    setLoading(true); // ← 読み込み開始
     const perMealBudget = Math.floor(finalBudget / mealCount);
     const results = [];
+
     for (let i = 0; i < mealCount; i++) {
-      const res = await fetch(`https://gakusyokubackend.onrender.com/recommend/${perMealBudget}`);
+      const res = await fetch(
+        `https://gakusyokubackend.onrender.com/recommend/${perMealBudget}`
+      );
       const data = await res.json();
       results.push({ mealIndex: i + 1, data });
     }
+
     setRecommendations(results);
+    setLoading(false); // ← 読み込み終了
   };
 
   // セット数（各食の候補件数の最小値）
@@ -36,11 +45,14 @@ const Recommendations = ({
       <button className="proposal-button" onClick={fetchRecommendations}>
         提案を見る
       </button>
+
+      {/* ローディング中表示 */}
+      {loading && <p style={{ marginTop: "1rem" }}>読み込み中...</p>}
+
       <div className="results-container">
         <h2>おすすめ組み合わせ</h2>
-        {setCount > 0 ? (
+        {!loading && setCount > 0 ? (
           [...Array(setCount)].map((_, setIdx) => {
-            // 各セットの合計金額計算
             const setTotal = recommendations.reduce((acc, rec) => {
               return acc + (rec.data[setIdx]?.total || 0);
             }, 0);
@@ -78,7 +90,7 @@ const Recommendations = ({
             );
           })
         ) : (
-          <p>組み合わせが見つかりませんでした。</p>
+          !loading && <p>組み合わせが見つかりませんでした。</p>
         )}
       </div>
     </div>
