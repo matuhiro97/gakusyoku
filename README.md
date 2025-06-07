@@ -1,4 +1,3 @@
-```md
 # Gakusyoku
 
 Gakusyoku is a simple meal recommendation tool built with React and Vite.
@@ -11,9 +10,9 @@ Create a `.env` file inside `my-react-app` with the following variable:
 
 ```
 
-VITE\_API\_BASE\_URL=[https://gakusyokubackend.onrender.com](https://gakusyokubackend.onrender.com)
+VITE_API_BASE_URL=https://gakusyokubackend.onrender.com
 
-````
+```
 
 This value is used by the frontend to call the backend API.
 
@@ -24,7 +23,7 @@ Install dependencies for the frontend:
 ```bash
 cd my-react-app
 npm install
-````
+```
 
 ## Development
 
@@ -48,5 +47,3 @@ Deploy to GitHub Pages:
 npm run deploy
 ```
 
-```
-```
