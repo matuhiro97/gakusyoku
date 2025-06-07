@@ -22,9 +22,11 @@ const Recommendations = ({
     const perMealBudget = Math.floor(finalBudget / mealCount);
     const results = [];
 
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
     for (let i = 0; i < mealCount; i++) {
       const res = await fetch(
-        `https://gakusyokubackend.onrender.com/recommend/${perMealBudget}`
+        `${baseUrl}/recommend/${perMealBudget}`
       );
       const data = await res.json();
       results.push({ mealIndex: i + 1, data });
