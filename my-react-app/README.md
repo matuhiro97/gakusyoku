@@ -2,6 +2,16 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Environment Variables
+
+Create a `.env` file in this directory and set the base URL for the backend API:
+
+```
+VITE_API_BASE_URL=https://gakusyokubackend.onrender.com
+```
+
+The application reads this value when requesting recommendations.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
