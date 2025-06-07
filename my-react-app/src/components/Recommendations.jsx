@@ -50,7 +50,7 @@ const Recommendations = ({
   return (
     <div className="recommendations">
       <button onClick={fetchRecommendations} disabled={loading}>
-        {loading ? "Loading..." : "Get Recommendations"}
+        {loading ? "読み込み中..." : "提案を見る"}
       </button>
       {/* 以下、recommendationsの表示ロジック */}
     </div>
