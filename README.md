@@ -6,7 +6,7 @@ The backend API can be found at [gakusyoku-backend](https://github.com/matuhiro9
 
 ## Environment Variables
 
-Create a `.env` file inside `my-react-app` with the following variable:
+Copy `.env.example` inside `my-react-app` to `.env` and set the backend API URL:
 
 ```
 
@@ -14,7 +14,7 @@ VITE_API_BASE_URL=https://gakusyokubackend.onrender.com
 
 ```
 
-This value is used by the frontend to call the backend API.
+Replace the value with the actual base URL of your API. This value is used by the frontend to call the backend API.
 
 ## Setup
 
