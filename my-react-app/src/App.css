@@ -158,3 +158,28 @@ body {
   color: #fff;
   font-weight: bold;
 }
+
+/* ===================== */
+/* PC向けレイアウト調整 */
+/* ===================== */
+
+@media (min-width: 768px) {
+  /* コンテンツ幅を広げる */
+  .container {
+    max-width: 800px;
+  }
+
+  /* 結果表示を並べて表示 */
+  .results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1rem;
+  }
+
+  /* ボタンサイズをゆったりさせる */
+  .button-group button,
+  .proposal-button {
+    padding: 0.6rem 1.4rem;
+    font-size: 1.1rem;
+  }
+}
