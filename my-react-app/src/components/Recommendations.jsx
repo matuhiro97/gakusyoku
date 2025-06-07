@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 const Recommendations = ({
   selectedBudget,
@@ -80,6 +81,14 @@ const Recommendations = ({
       )}
     </div>
   );
+};
+
+Recommendations.propTypes = {
+  selectedBudget: PropTypes.string.isRequired,
+  customBudget: PropTypes.string.isRequired,
+  mealCount: PropTypes.number.isRequired,
+  recommendations: PropTypes.array.isRequired,
+  setRecommendations: PropTypes.func.isRequired,
 };
 
 export default Recommendations;
