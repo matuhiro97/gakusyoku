@@ -43,6 +43,19 @@ const BudgetSelector = ({
         </button>
       </div>
 
+      {/* 任意の金額入力 */}
+      <div className="input-group">
+        <input
+          type="number"
+          placeholder="任意の金額"
+          value={customBudget}
+          onChange={(e) => {
+            setCustomBudget(e.target.value);
+            setSelectedBudget("");
+          }}
+        />
+      </div>
+
       <div className="section-title">食数選択</div>
       <div className="button-group">
         {[1, 2, 3].map((count) => (
