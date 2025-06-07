@@ -20,18 +20,24 @@ const Recommendations = ({
 
     setLoading(true); // ← 読み込み開始
     const perMealBudget = Math.floor(finalBudget / mealCount);
-    const results = [];
 
-    for (let i = 0; i < mealCount; i++) {
-      const res = await fetch(
-        `https://gakusyokubackend.onrender.com/recommend/${perMealBudget}`
+    try {
+      const results = await Promise.all(
+        [...Array(mealCount)].map(async (_, i) => {
+          const res = await fetch(
+            `https://gakusyokubackend.onrender.com/recommend/${perMealBudget}`
+          );
+          const data = await res.json();
+          return { mealIndex: i + 1, data };
+        })
       );
-      const data = await res.json();
-      results.push({ mealIndex: i + 1, data });
+      setRecommendations(results);
+    } catch (e) {
+      console.error(e);
+      alert("通信エラーが発生しました");
+    } finally {
+      setLoading(false); // ← 読み込み終了
     }
-
-    setRecommendations(results);
-    setLoading(false); // ← 読み込み終了
   };
 
   // セット数（各食の候補件数の最小値）
