@@ -52,7 +52,32 @@ const Recommendations = ({
       <button onClick={fetchRecommendations} disabled={loading}>
         {loading ? "読み込み中..." : "提案を見る"}
       </button>
-      {/* 以下、recommendationsの表示ロジック */}
+      {setCount > 0 && (
+        <div className="results-container">
+          {Array.from({ length: setCount }).map((_, setIndex) => (
+            <div key={setIndex} className="set-box">
+              <div className="section-title">{setIndex + 1}セット</div>
+              {recommendations.map((rec) => {
+                const combo = rec.data[setIndex];
+                return (
+                  <div key={rec.mealIndex} className="combo-box">
+                    <div>
+                      {rec.mealIndex}食目 (合計 {combo.total_price}円)
+                    </div>
+                    <ul>
+                      {combo.combination.map((item) => (
+                        <li key={item.name}>
+                          {item.name} ({item.price}円)
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
