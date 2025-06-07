@@ -8,9 +8,11 @@ const Recommendations = ({
   setRecommendations,
 }) => {
   const [loading, setLoading] = useState(false); // ← ローディング状態を管理
+  const [errorMessage, setErrorMessage] = useState("");
 
   // APIからおすすめ提案を取得する処理
   const fetchRecommendations = async () => {
+    setErrorMessage("");
     const budget = customBudget || selectedBudget;
     const finalBudget = parseInt(budget);
     if (!finalBudget || isNaN(finalBudget)) {
@@ -35,7 +37,7 @@ const Recommendations = ({
       setRecommendations(results);
     } catch (e) {
       console.error(e);
-      alert("通信エラーが発生しました");
+      setErrorMessage("通信エラーが発生しました。しばらくしてから再度お試しください。");
     } finally {
       setLoading(false); // ← 読み込み終了
     }
@@ -52,6 +54,7 @@ const Recommendations = ({
       <button onClick={fetchRecommendations} disabled={loading}>
         {loading ? "読み込み中..." : "提案を見る"}
       </button>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       {setCount > 0 && (
         <div className="results-container">
           {Array.from({ length: setCount }).map((_, setIndex) => (
