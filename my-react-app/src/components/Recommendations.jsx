@@ -36,6 +36,9 @@ const Recommendations = ({
       const results = await Promise.all(
         [...Array(mealCount)].map(async (_, i) => {
           const res = await fetch(`${baseUrl}/recommend/${perMealBudget}`);
+          if (!res.ok) {
+            throw new Error('Server responded with ' + res.status);
+          }
           const data = await res.json();
           return { mealIndex: i + 1, data };
         })
