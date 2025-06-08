@@ -14,6 +14,9 @@ function renderComponent(props) {
 }
 
 describe('Recommendations', () => {
+  beforeEach(() => {
+    process.env.VITE_API_BASE_URL = 'http://test';
+  });
   afterEach(() => {
     jest.restoreAllMocks();
   });
