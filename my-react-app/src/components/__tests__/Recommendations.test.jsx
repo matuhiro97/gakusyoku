@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import Recommendations from '../Recommendations';
 
 function renderComponent(props) {
@@ -48,12 +47,16 @@ describe('Recommendations', () => {
       () =>
         new Promise((resolve) => {
           resolveFetch = () =>
-            resolve({ json: () => Promise.resolve([]) });
+            resolve({ ok: true, json: () => Promise.resolve([]) });
         })
     );
     renderComponent();
-    fireEvent.click(screen.getByRole('button', { name: '提案を見る' }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: '提案を見る' }));
+    });
     expect(await screen.findByText('読み込み中...')).toBeInTheDocument();
-    resolveFetch();
+    await act(async () => {
+      resolveFetch();
+    });
   });
 });

@@ -1,0 +1,10 @@
+# Node modules
+my-react-app/node_modules/
+# Build output
+dist/
+my-react-app/dist/
+# Environment variables
+my-react-app/.env
+# Logs
+npm-debug.log*
+
