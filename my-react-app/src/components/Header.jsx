@@ -1,4 +1,3 @@
-import React from "react";
 //import "./Header.css"; // 必要なら個別CSSも作成可能
 
 const Header = () => {
@@ -13,5 +12,7 @@ const Header = () => {
     </header>
   );
 };
+
+Header.propTypes = {};
 
 export default Header;

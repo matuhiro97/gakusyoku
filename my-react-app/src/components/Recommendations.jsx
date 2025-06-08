@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 const Recommendations = ({
   selectedBudget,
@@ -11,8 +12,16 @@ const Recommendations = ({
   const [errorMessage, setErrorMessage] = useState("");
 
   // APIからおすすめ提案を取得する処理
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
   const fetchRecommendations = async () => {
-    setErrorMessage("");
+    setErrorMessage(""); // エラー初期化
+
+    if (!baseUrl) {
+      alert("API URL not configured");
+      return;
+    }
+
     const budget = customBudget || selectedBudget;
     const finalBudget = parseInt(budget);
     if (!finalBudget || isNaN(finalBudget)) {
@@ -22,14 +31,11 @@ const Recommendations = ({
 
     setLoading(true); // ← 読み込み開始
     const perMealBudget = Math.floor(finalBudget / mealCount);
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
     try {
       const results = await Promise.all(
         [...Array(mealCount)].map(async (_, i) => {
-          const res = await fetch(
-            `${baseUrl}/recommend/${perMealBudget}`
-          );
+          const res = await fetch(`${baseUrl}/recommend/${perMealBudget}`);
           const data = await res.json();
           return { mealIndex: i + 1, data };
         })
@@ -43,7 +49,6 @@ const Recommendations = ({
     }
   };
 
-  // セット数（各食の候補件数の最小値）
   const setCount =
     recommendations.length > 0
       ? Math.min(...recommendations.map((rec) => rec.data.length))
@@ -51,7 +56,7 @@ const Recommendations = ({
 
   return (
     <div className="recommendations">
-      <button onClick={fetchRecommendations} disabled={loading}>
+      <button onClick={fetchRecommendations} disabled={loading || !baseUrl}>
         {loading ? "読み込み中..." : "提案を見る"}
       </button>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -83,6 +88,14 @@ const Recommendations = ({
       )}
     </div>
   );
+};
+
+Recommendations.propTypes = {
+  selectedBudget: PropTypes.string.isRequired,
+  customBudget: PropTypes.string.isRequired,
+  mealCount: PropTypes.number.isRequired,
+  recommendations: PropTypes.array.isRequired,
+  setRecommendations: PropTypes.func.isRequired,
 };
 
 export default Recommendations;

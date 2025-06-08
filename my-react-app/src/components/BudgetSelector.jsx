@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const BudgetSelector = ({
   selectedBudget,
@@ -76,6 +76,15 @@ const BudgetSelector = ({
       </div>
     </div>
   );
+};
+
+BudgetSelector.propTypes = {
+  selectedBudget: PropTypes.string.isRequired,
+  customBudget: PropTypes.string.isRequired,
+  mealCount: PropTypes.number.isRequired,
+  setSelectedBudget: PropTypes.func.isRequired,
+  setCustomBudget: PropTypes.func.isRequired,
+  setMealCount: PropTypes.func.isRequired,
 };
 
 export default BudgetSelector;
