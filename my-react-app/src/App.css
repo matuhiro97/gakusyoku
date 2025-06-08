@@ -151,6 +151,12 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* エラーメッセージ */
+.error-message {
+  color: red;
+  margin-top: 0.5rem;
+}
+
 
 /* 選択中のボタン用スタイル */
 .button-selected {
