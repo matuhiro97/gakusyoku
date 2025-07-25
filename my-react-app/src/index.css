@@ -25,6 +25,10 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  flex-direction: column;   /* 上下に積む */
+  align-items: center;      /* 横中央 */
+  justify-content: flex-start; /* 縦は上寄せ (center にすると真ん中) */
+  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
